@@ -50,3 +50,16 @@ Route::get('/item/{id}', function ($id) {
 
     return \App\Http\Resources\Item::collection($produto);
 });
+
+
+
+Route::get('/barcode/{id}', function ($id) {
+
+    $produto = Illuminate\Support\Facades\DB::table('produtos')
+        ->join('item',  'produtos.id', '=', 'item.produto_id')
+        ->select('item.*', 'produtos.nome as produtoNome')
+        ->where('id', $id)
+        ->get();
+
+    return \App\Http\Resources\Item::collection($produto);
+});
