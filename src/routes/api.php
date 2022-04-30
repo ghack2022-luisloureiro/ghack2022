@@ -55,7 +55,7 @@ Route::get('/item/{id}', function ($id) {
 
 Route::get('/barcode/{id}', function ($id) {
 
-    $produto = \App\Models\Item::where('id',$id)->get();
+    $produto = \App\Models\Item::where('barcode',$id)->get();
 
     return \App\Http\Resources\Item::collection($produto);
 });
